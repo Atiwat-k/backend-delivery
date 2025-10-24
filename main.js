@@ -17,7 +17,7 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-const bucket = admin.storage().bucket();
+
 
 const app = express();
 const PORT = 3000;
