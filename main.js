@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const { createClient } = require("@supabase/supabase-js");
 const sharp = require("sharp");
+const axios = require('axios');
 // Firebase service account
 const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 
@@ -18,7 +19,18 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+async function callSelf() {
+  try {
+    const res = await axios.get('https://backend-delivery-3.onrender.com/your-endpoint');
+    console.log('status:', res.status);
+    console.log('data:', res.data);
+  } catch (err) {
+    console.error('Error calling self:', err.message);
+  }
+}
 
+// ตัวอย่าง run ทุก 1 นาที
+setInterval(callSelf, 60 * 1000);
 const app = express();
 const PORT = 3000;
 
