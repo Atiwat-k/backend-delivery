@@ -9,11 +9,11 @@ const crypto = require("crypto");
 const { createClient } = require("@supabase/supabase-js");
 const sharp = require("sharp");
 // Firebase service account
-const serviceAccount = require("./firebaseServiceAccountKey.json");
+const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET_URL", // เช่น myapp.appspot.com
+
 });
 
 const db = admin.firestore();
