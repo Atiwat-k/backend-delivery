@@ -9,7 +9,7 @@ const crypto = require("crypto");
 const { createClient } = require("@supabase/supabase-js");
 const sharp = require("sharp");
 // Firebase service account
-const serviceAccount = require("./firebaseServiceAccountKey.json");
+const serviceAccount = require("../firebaseServiceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -868,6 +868,13 @@ app.get("/delivery_photos/:deliveryId", async (req, res) => {
 
 
 // ==================== Server Start ====================
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// Export handler สำหรับ Vercel
+module.exports = app;
+module.exports.handler = serverless(app);
+
+// สำหรับ local test (npm start)
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
