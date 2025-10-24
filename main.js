@@ -9,7 +9,7 @@ const crypto = require("crypto");
 const { createClient } = require("@supabase/supabase-js");
 const sharp = require("sharp");
 const axios = require('axios');
-const express = require('express');
+
 // Firebase service account
 const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 
