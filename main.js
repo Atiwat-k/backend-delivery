@@ -9,6 +9,7 @@ const crypto = require("crypto");
 const { createClient } = require("@supabase/supabase-js");
 const sharp = require("sharp");
 const axios = require('axios');
+const express = require('express');
 // Firebase service account
 const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 
@@ -21,7 +22,7 @@ const db = admin.firestore();
 
 async function callSelf() {
   try {
-    const res = await axios.get('https://backend-delivery-3.onrender.com/your-endpoint');
+    const res = await axios.get('https://backend-delivery-3.onrender.com/users');
     console.log('status:', res.status);
     console.log('data:', res.data);
   } catch (err) {
