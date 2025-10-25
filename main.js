@@ -31,7 +31,7 @@ async function callSelf() {
 }
 
 // ตัวอย่าง run ทุก 1 นาที
-setInterval(callSelf, 60 * 1000);
+setInterval(callSelf, 24 * 60 * 60 * 1000); // 24 ชั่วโมง
 const app = express();
 const PORT = 3000;
 
